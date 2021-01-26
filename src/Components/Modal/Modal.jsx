@@ -3,10 +3,6 @@ import PropTypes from "prop-types";
 import "../styles.css";
 
 export default class Modal extends Component {
-  state = {
-    src: this.props.image.src,
-    alt: this.props.image.alt,
-  };
 
   componentDidMount() {
     window.addEventListener("keydown", this.keyDownHandler);
@@ -29,10 +25,11 @@ export default class Modal extends Component {
   };
 
   render() {
+    const {src, alt} = this.props.image
     return (
       <div className="Overlay" onClick={this.overlayClickHandler}>
         <div className="Modal">
-          <img src={this.state.src} alt={this.state.alt} />
+          <img src={src} alt={alt} />
         </div>
       </div>
     );
