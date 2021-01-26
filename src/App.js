@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import PicturesApi from "./Utils/api";
-import SearchBar from "./Components/SearchBar/SearchBar";
-import ImageGallery from "./Components/ImageGallery/ImageGallery";
-import Button from "./Components/Button/Button";
-import PreLoader from "./Components/Loader/Loader";
-import Modal from "./Components/Modal/Modal";
-import "./Components/styles.css";
+import PicturesApi from "./utils/api";
+import SearchBar from "./components/SearchBar/SearchBar";
+import ImageGallery from "./components/ImageGallery/ImageGallery";
+import Button from "./components/Button/Button";
+import PreLoader from "./components/Loader/Loader";
+import Modal from "./components/Modal/Modal";
+import "./components/styles.css";
 
 export default class App extends Component {
   static propTypes = {
