@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ImageGalleryItem = ({ src, alt, modal_src }) => {
+const ImageGalleryItem = ({ src, alt, modal_src, showModal }) => {
   return (
     <li className="ImageGalleryItem">
       <img
         src={src}
         alt={alt}
-        data-modal={modal_src}
         className="ImageGalleryItem-image"
+        onClick={() => showModal(modal_src, alt)}
       />
     </li>
   );

@@ -70,10 +70,10 @@ export default class App extends Component {
       .finally(() => this.setState({ loading: false }));
   };
 
-  galleryClickHandler = (e) => {
+  imageClickhandler = (src, alt) => {
     this.toggleModal();
     this.setState({
-      modalImage: { src: e.target.dataset.modal, alt: e.target.alt },
+      modalImage: { src, alt },
     });
   };
 
@@ -93,7 +93,7 @@ export default class App extends Component {
         {gallery.length > 0 && (
           <ImageGallery
             images={gallery}
-            imagePicker={this.galleryClickHandler}
+            imageClickhandler={this.imageClickhandler}
           />
         )}
 

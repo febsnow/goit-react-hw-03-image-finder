@@ -173,10 +173,14 @@ img {
 }
 
 .Modal {
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
+  /* margin: 0 auto; */
+  /* max-width: calc(100vw - 48px);
+  height: calc(100vh - 24px); */
 }
 
+.Modal img {
+  max-height: 95vh;
+}
 /*
 * Стили компонента Buton (Load more)
 */
