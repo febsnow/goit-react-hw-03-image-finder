@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Flip, toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import PicturesApi from "./utils/api";
 import SearchBar from "./components/SearchBar/SearchBar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
@@ -57,20 +60,24 @@ export default class App extends Component {
     this.setState({ loading: true });
 
     PicturesApi(searchQuery, page)
-      .then((images) =>
+      .then((images) => {
+        if (images.length === 0) {
+          toast.error("Ничего не найдено");
+          return;
+        }
         this.setState(
           (prevState) => ({
             gallery: [...prevState.gallery, ...images],
             page: prevState.page + 1,
           }),
           this.scrollOnLoad
-        )
-      )
+        );
+      })
       .catch((error) => console.log(error))
       .finally(() => this.setState({ loading: false }));
   };
 
-  imageClickhandler = (src, alt) => {
+  imageClickHandler = (src, alt) => {
     this.toggleModal();
     this.setState({
       modalImage: { src, alt },
@@ -85,20 +92,25 @@ export default class App extends Component {
     const { gallery, loading, showModal, modalImage } = this.state;
     return (
       <div className="App">
+        <ToastContainer
+          transition={Flip}
+          autoClose={2000}
+          hideProgressBar={true}
+          pauseOnFocusLoss={false}
+          draggable={false}
+          pauseOnHover={false}
+        />
         {showModal && (
           <Modal image={modalImage} toggleModal={this.toggleModal} />
         )}
         <SearchBar onSubmit={this.submitHandler} />
-
         {gallery.length > 0 && (
           <ImageGallery
             images={gallery}
-            imageClickhandler={this.imageClickhandler}
+            imageClickHandler={this.imageClickHandler}
           />
         )}
-
         {loading && <PreLoader />}
-
         {gallery.length > 0 && !loading && (
           <Button clickHandler={this.searchImages} />
         )}

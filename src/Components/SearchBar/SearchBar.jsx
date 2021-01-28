@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { toast } from "react-toastify";
 import "../styles.css";
 
 export default class SearchBar extends Component {
@@ -8,7 +9,12 @@ export default class SearchBar extends Component {
 
   submitHandler = (evt) => {
     evt.preventDefault();
-    this.props.onSubmit(this.state.value);
+    if (this.state.value === "") {
+      toast.warn("Введите поисковый запрос");
+      this.setState({ value: "" });
+      return;
+    }
+    this.props.onSubmit(this.state.value.toLowerCase().trim());
     this.setState({ value: "" });
   };
 

@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
 
-const ImageGallery = ({ images, imageClickhandler }) => {
+const ImageGallery = ({ images, imageClickHandler }) => {
   return (
-    <ul className="ImageGallery" >
+    <ul className="ImageGallery">
       {images.map((image) => {
         return (
           <ImageGalleryItem
@@ -12,7 +12,8 @@ const ImageGallery = ({ images, imageClickhandler }) => {
             src={image.webformatURL}
             alt={image.tags}
             modal_src={image.largeImageURL}
-            showModal={imageClickhandler}/>
+            showModal={imageClickHandler}
+          />
         );
       })}
     </ul>
@@ -21,7 +22,7 @@ const ImageGallery = ({ images, imageClickhandler }) => {
 
 ImageGallery.propTypes = {
   images: PropTypes.arrayOf(PropTypes.object).isRequired,
-  imagePicker: PropTypes.func.isRequired,
+  imageClickHandler: PropTypes.func.isRequired,
 };
 
 export default ImageGallery;
